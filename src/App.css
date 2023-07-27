@@ -6,6 +6,10 @@
   height: 40vmin;
   pointer-events: none;
 }
+.card {
+  margin-top: 50px;
+  height: 470px;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
