@@ -36,9 +36,7 @@ function App() {
                     ></img>
                     <h5 className="card-title">{value.title}</h5>
                     <p className="card-text">{value.description}</p>
-                    <a href="#" className="btn btn-primary">
-                      Main News
-                    </a>
+                    <button className="btn btn-primary"> Main News</button>
                   </div>
                 </div>
               </div>
