@@ -1,51 +1,37 @@
-import React, { useState } from "react";
-import axios from "axios";
-import "./App.css";
+import React from "react";
+import Navbar from "./Components/Navbar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home";
+import FetchData from "./Components/FetchData";
 
-function App() {
-  const [data, setData] = useState([]);
-
-  const getNews = () => {
-    axios
-      .get(
-        "https://newsapi.org/v2/top-headlines?country=in&apiKey=3583affe6f1f4884964cdfb2c709d6b7"
-      )
-      .then((response) => {
-        console.log(response);
-        // setData(response.data.articles);
-        setData(response.data.articles);
-      });
-  };
-
+const App = () => {
   return (
-    <div className="App">
-      <button className="btn btn-primary" onClick={getNews}>
-        Fetch News
-      </button>
-      <div className="container">
-        <div className="row">
-          {data.map((value) => {
-            return (
-              <div className="col-4">
-                <div className="card" style={{ width: "18rem" }}>
-                  <div className="card-body">
-                    <img
-                      src={value.urlToImage}
-                      class="card-img-top"
-                      alt="..."
-                    ></img>
-                    <h5 className="card-title">{value.title}</h5>
-                    <p className="card-text">{value.description}</p>
-                    <button className="btn btn-primary"> Main News</button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+    <div>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route exact path="/home" element={<Home />} />
+          <Route
+            exact
+            path="/business"
+            element={<FetchData cat="business" />}
+          />
+          <Route
+            exact
+            path="/technology"
+            element={<FetchData cat="technology" />}
+          />
+          <Route exact path="/health" element={<FetchData cat="health" />} />
+          <Route exact path="/science" element={<FetchData cat="science" />} />
+          <Route
+            exact
+            path="/entertainment"
+            element={<FetchData cat="entertainment" />}
+          />
+        </Routes>
+      </Router>
     </div>
   );
-}
+};
 
 export default App;
